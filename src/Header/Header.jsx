@@ -6,15 +6,14 @@ import ShopingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { useStateValue } from "../StateProvider";
 import { auth } from "../firebase";
 function Header() {
-
-  const [{basket,user}] = useStateValue();
+  const [{ basket, user }] = useStateValue();
   console.log(basket);
 
-  const login = () =>{
-    if(user){
+  const login = () => {
+    if (user) {
       auth.signOut();
     }
-  }
+  };
 
   return (
     <nav className="header">
@@ -35,12 +34,14 @@ function Header() {
         <Link to="/login" className="header__link">
           <div className="header__option">
             <span className="header__optionLineOne">Hello {user?.email}</span>
-  <span className="header__optionLineTwo">{user ? "sigh Out" : "Signt In"}</span>
+            <span className="header__optionLineTwo">
+              {user ? "sigh Out" : "Signt In"}
+            </span>
           </div>
         </Link>
 
         <Link to={!!user && "/login"} className="header__link">
-          <div onClick={login}  className="header__option">
+          <div onClick={login} className="header__option">
             <span className="header__optionLineOne">Return</span>
             <span className="header__optionLineTwo">& Orders</span>
           </div>
@@ -56,7 +57,9 @@ function Header() {
         <Link to="/checkout" className="header__link">
           <div className="header__optionBasket">
             <ShopingBasketIcon />
-  <span className="header__optionLineTwo header__basketCount">{basket?.length}</span>
+            <span className="header__optionLineTwo header__basketCount">
+              {basket?.length}
+            </span>
           </div>
         </Link>
       </div>
